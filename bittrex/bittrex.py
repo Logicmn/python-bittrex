@@ -21,7 +21,7 @@ BASE_URL = 'https://bittrex.com/api/v1.1/%s/'
 
 MARKET_SET = {'getopenorders', 'cancel', 'sellmarket', 'selllimit', 'buymarket', 'buylimit'}
 
-ACCOUNT_SET = {'getbalances', 'getbalance', 'getdepositaddress', 'withdraw', 'getorderhistory'}
+ACCOUNT_SET = {'getbalances', 'getbalance', 'getdepositaddress', 'withdraw', 'getorderhistory', 'getorder'}
 
 
 class Bittrex(object):
@@ -341,3 +341,19 @@ class Bittrex(object):
 
         """
         return self.api_query('getorderhistory', {'market':market, 'count': count})
+   
+    def get_order(self, uuid):
+        """
+        Used to retrieve order information
+
+        /account/getorder
+
+        :uuid: id of the order
+        :type market: str
+
+        :return: order history in JSON
+        :rtype : dict
+
+        """
+        return self.api_query('getorder', {'uuid':uuid})
+   
